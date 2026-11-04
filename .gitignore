@@ -1,0 +1,30 @@
+# Files made by the build, the mesh generators and the convergence runners.
+# None of them belongs in the repository: every one is generated again by the
+# commands of README.txt.
+#
+# Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# meshes of mesh/make_mesh_2d.py and mesh/make_mesh_3d.py (default --out)
+/meshes/
+
+# cases and tables of convergence/run_example1_2d.py and run_example2_3d.py (default --out)
+/results/
+
+# the solver program written by solver/Allwmake
+/bin/
+
+# wmake build directories, one per platform (Make/$WM_OPTIONS, for example
+# Make/linux64GccDPInt32Opt), and wmake include links
+/solver/ccfvPoisson/Make/*/
+lnInclude/
+
+# Python byte code and the Python environment of the quick start
+__pycache__/
+*.pyc
+/.venv/
+
+# editor swap and backup files
+*.swp
+*.swo
+*~

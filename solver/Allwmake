@@ -1,0 +1,44 @@
+#!/bin/sh
+#------------------------------------------------------------------------------
+# ccfvPoisson: cell-centered finite volume method with non-orthogonal
+# correction for the Poisson problem on polytopal meshes
+#
+# Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Licensed under the GNU General Public License v3.0 or later; see the file LICENSE.
+#------------------------------------------------------------------------------
+# Builds the solver ccfvPoisson with wmake.  The program is written to
+# bin/ccfvPoisson at the top of the repository (not to $FOAM_USER_APPBIN).
+#
+# Needs an OpenFOAM environment; the code was written and tested with
+# OpenFOAM v2606 (openfoam.com).  Usage, from any directory:
+#
+#     <repository>/solver/Allwmake [-j N]
+#------------------------------------------------------------------------------
+cd "${0%/*}" || exit 1                  # run from this directory
+
+if [ -z "$WM_PROJECT_DIR" ]
+then
+    echo "Allwmake: no OpenFOAM environment (source the etc/bashrc of" \
+         "OpenFOAM v2606 first)" 1>&2
+    exit 1
+fi
+
+if [ "$WM_PROJECT_VERSION" != "v2606" ]
+then
+    echo "Allwmake: warning: tested with OpenFOAM v2606, found" \
+         "$WM_PROJECT_VERSION" 1>&2
+fi
+
+wmake "$@" ccfvPoisson || exit 1
+
+if [ -x ../bin/ccfvPoisson ]
+then
+    echo "Allwmake: built $(cd ../bin && pwd)/ccfvPoisson"
+else
+    echo "Allwmake: ../bin/ccfvPoisson was not produced" 1>&2
+    exit 1
+fi
+
+#------------------------------------------------------------------------------

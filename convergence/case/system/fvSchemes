@@ -1,0 +1,52 @@
+/*---------------------------------------------------------------------------*\
+    Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+    SPDX-License-Identifier: GPL-3.0-or-later
+
+    Licensed under the GNU General Public License v3.0 or later; see the file LICENSE.
+
+Description
+    Discretisation schemes of a convergence-test case.  The solver builds
+    its own operators (the weighted least-squares gradient and the
+    numerical flux with the non-orthogonal correction)) and takes no
+    scheme from this file; OpenFOAM needs the file to set up the mesh.
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default         steadyState;
+}
+
+gradSchemes
+{
+    default         none;
+}
+
+divSchemes
+{
+    default         none;
+}
+
+laplacianSchemes
+{
+    default         none;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         corrected;
+}
+
+// ************************************************************************* //

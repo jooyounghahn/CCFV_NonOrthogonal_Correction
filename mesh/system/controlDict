@@ -1,0 +1,38 @@
+/*---------------------------------------------------------------------------*\
+  Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+  SPDX-License-Identifier: GPL-3.0-or-later
+
+  Licensed under the GNU General Public License v3.0 or later; see the file LICENSE.
+
+  Time settings of a mesh directory.  The OpenFOAM mesh utilities called by
+  mesh/make_mesh_2d.py and mesh/make_mesh_3d.py read this file.  The mesh
+  is written as ascii text with 17 significant digits, which stores every
+  point coordinate exactly; a lower precision changes the mesh.
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+
+application       none;
+
+startFrom         startTime;
+startTime         0;
+stopAt            endTime;
+endTime           1;
+deltaT            1;
+
+writeControl      timeStep;
+writeInterval     1;
+writeFormat       ascii;
+writePrecision    17;
+writeCompression  off;
+
+timeFormat        general;
+timePrecision     6;
+
+runTimeModifiable false;

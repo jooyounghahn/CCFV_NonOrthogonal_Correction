@@ -1,0 +1,17 @@
+/*---------------------------------------------------------------------------*\
+  Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+  SPDX-License-Identifier: GPL-3.0-or-later
+
+  Licensed under the GNU General Public License v3.0 or later; see the file LICENSE.
+
+  Empty solver settings.  The mesh utilities solve no equation, but
+  polyDualMesh and renumberMesh refuse to start without this file.
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}

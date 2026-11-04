@@ -1,0 +1,29 @@
+#!/bin/sh
+#------------------------------------------------------------------------------
+# ccfvPoisson: cell-centered finite volume method with non-orthogonal
+# correction for the Poisson problem on polytopal meshes
+#
+# Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Licensed under the GNU General Public License v3.0 or later; see the file LICENSE.
+#------------------------------------------------------------------------------
+# Removes the build files of ccfvPoisson and the program bin/ccfvPoisson.
+#
+#     <repository>/solver/Allwclean
+#------------------------------------------------------------------------------
+cd "${0%/*}" || exit 1                  # run from this directory
+
+if [ -z "$WM_PROJECT_DIR" ]
+then
+    echo "Allwclean: no OpenFOAM environment (source the etc/bashrc of" \
+         "OpenFOAM v2606 first)" 1>&2
+    exit 1
+fi
+
+wclean ccfvPoisson
+
+rm -f ../bin/ccfvPoisson
+rmdir ../bin 2>/dev/null                # only if it is empty now
+
+#------------------------------------------------------------------------------

@@ -1,0 +1,15 @@
+# Convergence table of Example 2 (3D) in the paper: errors and experimental orders.
+#
+# Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Example 2: 3D, polyhedral meshes N = 1, ..., 4, over-relaxed correction,
+# least-squares weights (iii) and facet average weights (iii).
+# The four rows below are the body of the table in the LaTeX source of the
+# paper, one row per mesh (leading tabs included):
+#   h & |phi_I^* - phi_h|_h & order & ||phi_I^* - phi_h||_{0,Omega} & order \\
+# Lines starting with "#" are comments.
+				0.498 & 2.897e-01 & --- & 6.266e-02 & --- \\
+				0.249 & 1.233e-01 & 1.231 & 1.785e-02 & 1.809 \\
+				0.183 & 7.384e-02 & 1.674 & 8.285e-03 & 2.507 \\
+				0.132 & 5.138e-02 & 1.118 & 4.749e-03 & 1.716 \\

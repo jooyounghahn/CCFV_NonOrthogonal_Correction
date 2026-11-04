@@ -1,0 +1,46 @@
+/*---------------------------------------------------------------------------*\
+    Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+    SPDX-License-Identifier: GPL-3.0-or-later
+
+    Licensed under the GNU General Public License v3.0 or later; see the file LICENSE.
+
+Description
+    Linear solver of a convergence-test case.  Each outer iteration of the
+    deferred correction in the solver solves one linear system for phi:
+    conjugate gradients with an algebraic multigrid preconditioner (works
+    unchanged in parallel), down to an absolute residual of 1e-15.  The
+    stopping rule of the outer iteration (epsilon, maxOuter) is set in
+    system/ccfvDict, which the runners write for every case.
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    phi
+    {
+        solver          PCG;
+        preconditioner
+        {
+            preconditioner          GAMG;
+            smoother                DICGaussSeidel;
+            agglomerator            faceAreaPair;
+            nCellsInCoarsestLevel   10;
+            mergeLevels             1;
+            nVcycles                2;
+            tolerance               0;
+            relTol                  0;
+        }
+        tolerance       1e-15;
+        relTol          0;
+        maxIter         1000;
+    }
+}
+
+// ************************************************************************* //

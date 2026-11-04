@@ -1,0 +1,23 @@
+/*---------------------------------------------------------------------------*\
+    ccfvPoisson: cell-centered finite volume method with non-orthogonal
+    correction for the Poisson problem on polytopal meshes
+
+    Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+    SPDX-License-Identifier: GPL-3.0-or-later
+
+    Licensed under the GNU General Public License v3.0 or later; see the file LICENSE.
+-------------------------------------------------------------------------------
+    Source files of ccfvPoisson.  wmake runs in this directory, so the
+    executable path below is relative to solver/ccfvPoisson: the program
+    is written to bin/ccfvPoisson at the top of the repository.
+\*---------------------------------------------------------------------------*/
+
+ccfvGeometry.C
+ccfvScheme.C
+ccfvExactSolution.C
+ccfvGradient.C
+ccfvFlux.C
+ccfvNorms.C
+ccfvPoisson.C
+
+EXE = ../../bin/ccfvPoisson

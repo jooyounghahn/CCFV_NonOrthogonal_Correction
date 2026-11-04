@@ -1,0 +1,18 @@
+/*---------------------------------------------------------------------------*\
+    ccfvPoisson: cell-centered finite volume method with non-orthogonal
+    correction for the Poisson problem on polytopal meshes
+
+    Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+    SPDX-License-Identifier: GPL-3.0-or-later
+
+    Licensed under the GNU General Public License v3.0 or later; see the file LICENSE.
+-------------------------------------------------------------------------------
+    Compiler and linker options: only OpenFOAM libraries, located through
+    the OpenFOAM environment ($(LIB_SRC)).
+\*---------------------------------------------------------------------------*/
+
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude
+
+EXE_LIBS = \
+    -lfiniteVolume

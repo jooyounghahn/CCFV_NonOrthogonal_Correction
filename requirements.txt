@@ -1,0 +1,11 @@
+# Python packages for the mesh generators in mesh/.
+#
+# Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# gmsh is pinned to the exact version used for the paper: another gmsh
+# version (or more than one meshing thread) gives different meshes.
+# matplotlib is needed only for the figures (--figures, mesh/plot_mesh.py).
+gmsh==4.15.2
+numpy==2.5.3
+matplotlib==3.9.2

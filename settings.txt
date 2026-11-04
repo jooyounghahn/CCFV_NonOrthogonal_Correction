@@ -1,0 +1,51 @@
+# Settings of the convergence tests (Example 1 in 2D and Example 2 in 3D).
+#
+# Copyright (C) 2026 Hyeokjoo Park and Jooyoung Hahn
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Read by convergence/run_example1_2d.py and convergence/run_example2_3d.py.
+# Format: one "key = value" per line; everything after "#" is a comment.
+#
+# The values below are the setting of the convergence tables of the paper.
+# With these three scheme choices the runners compare their tables with the
+# paper and print PASS or FAIL; with any other choice they print the tables
+# only.  np does not change the tables (np = 1 and np = 4 give the same rows).
+#
+# Symbols.  K and L are the two cells of an interior facet F, and x_K, x_L
+# their centres.  n_{K,F} is the unit normal of F pointing out of K.
+# d_{K,F} is the distance from x_K to the plane of F, and d_F = d_{K,F} +
+# d_{L,F}.  delta_F = |x_L - x_K| and r_{K,F} = (x_L - x_K)/delta_F.
+# On a boundary facet, x_L is replaced by the facet centre x_F and
+# d_F = d_{K,F}.  theta_F is the angle between n_{K,F} and r_{K,F}, so that
+# d_F = delta_F cos(theta_F).  |F| is the area (2D: length) of F and |K| the
+# volume (2D: area) of K.
+
+# Non-orthogonal correction.  The flux through F splits the normal as
+# n_{K,F} = c_F r_{K,F} + e_{K,F}: the part c_F r_{K,F} gives the two-point
+# flux, and e_{K,F} is treated with the reconstructed gradient.
+#   minimum        c_F = cos(theta_F)
+#   full-area      c_F = 1
+#   over-relaxed   c_F = 1/cos(theta_F)                              (paper)
+correction = over-relaxed
+
+# Weights omega_{K,F} of the least-squares gradient of the cell K (the
+# gradient fits the differences to the neighbours along r_{K,F}):
+#   i     omega_{K,F} = 1
+#   ii    omega_{K,F} = |F|
+#   iii   omega_{K,F} = alpha_{K,F} d_F |F| / (|K| cos^2(theta_F))   (paper)
+# Choice iii uses the average weights alpha_{K,F} selected below.
+ls_weights = iii
+
+# Weights of the average of the two cell gradients on an interior facet F,
+# {{v}}_F = alpha_{K,F} v_K + alpha_{L,F} v_L (alpha_{K,F} = 1 on a boundary
+# facet):
+#   i     alpha_{K,F} = alpha_{L,F} = 1/2
+#   ii    alpha_{K,F} = d_{L,F}/d_F,  alpha_{L,F} = d_{K,F}/d_F
+#   iii   alpha_{K,F} = d_{K,F}/d_F,  alpha_{L,F} = d_{L,F}/d_F       (paper)
+average_weights = iii
+
+# Number of MPI processes.  np = 1 runs the solver serially (no mpirun);
+# np > 1 decomposes each mesh with scotch into np parts and runs
+# "mpirun -np <np> bin/ccfvPoisson -parallel".  The option --np of the
+# runners overrides this value.
+np = 4
